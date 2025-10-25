@@ -356,7 +356,7 @@ if __name__ == "__main__":
     print("A mysterious adventure awaits...")
     print()
     
-    # Game loop allowing replay
+    
     while True:
         candles_remaining = MAX_CANDLES
         player_choices = []
@@ -366,7 +366,7 @@ if __name__ == "__main__":
         # Ask to play again
         play_again = input("\nWould you like to explore the library again? (yes/no): ").strip().lower()
         
-        # Use boolean operators to check valid responses
+        
         if play_again == "yes" or play_again == "y":
             print("\nThe library door appears once more...\n")
             continue
