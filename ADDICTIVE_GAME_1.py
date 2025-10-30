@@ -12,14 +12,18 @@ HEIGHT = 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 # Set the window title
-pygame.display.set_caption("Runner Game")
+pygame.display.set_caption("Stick Dash")
 
 # Create a clock object to control frame rate
 clock = pygame.time.Clock()
 
-# Set up font for displaying text
-# Parameters: font name (None = default), font size
-font = pygame.font.Font(None, 48)
+# Set up fonts for displaying text
+# Large font for title and game over
+font_large = pygame.font.Font(None, 48)
+# Medium font for instructions
+font_medium = pygame.font.Font(None, 32)
+# Small font for detailed instructions
+font_small = pygame.font.Font(None, 24)
 
 # Define colors using RGB values (Red, Green, Blue)
 BLACK = (0, 0, 0)
@@ -28,6 +32,7 @@ BLUE = (135, 206, 235)
 GRAY = (128, 128, 128)
 DARK_GRAY = (80, 80, 80)
 RED = (255, 0, 0)
+ORANGE = (255, 165, 0)
 
 # Player properties - position, size, and physics
 player_x = 100  # Fixed X position - player stays on left side
@@ -107,7 +112,29 @@ while running:
     # Fill the screen with background color (black)
     screen.fill(BLACK)
     
-    # Draw a ground line (optional visual reference)
+    # ========== DRAW INSTRUCTIONS SECTION ==========
+    # Draw game title at the top
+    title_text = font_large.render("BOULDER RUNNER", True, ORANGE)
+    title_width = title_text.get_width()
+    screen.blit(title_text, (WIDTH // 2 - title_width // 2, 10))
+    
+    # Draw controls instruction
+    controls_text = font_small.render("Controls: Press SPACEBAR to Jump", True, WHITE)
+    screen.blit(controls_text, (20, 70))
+    
+    # Draw goal instruction
+    goal_text = font_small.render("Goal: Avoid the boulders!", True, WHITE)
+    screen.blit(goal_text, (20, 95))
+    
+    # Draw how to win/stay alive instruction
+    survive_text = font_small.render("Stay Alive: Jump over boulders to increase your score", True, WHITE)
+    screen.blit(survive_text, (20, 120))
+    
+    # Draw a separator line between instructions and game area
+    pygame.draw.line(screen, WHITE, (0, 150), (WIDTH, 150), 2)
+    # ========== END INSTRUCTIONS SECTION ==========
+    
+    # Draw a ground line
     pygame.draw.line(screen, WHITE, (0, ground_level + player_height), (WIDTH, ground_level + player_height), 2)
     
     # Draw the stick figure player
@@ -155,19 +182,23 @@ while running:
     
     # Create text surface with the score
     # Convert score number to string for display
-    score_text = font.render("Score: " + str(score), True, WHITE)
-    
-    # Draw the score in the top-left corner
-    # Parameters: surface to draw, position (x, y)
-    screen.blit(score_text, (10, 10))
+    score_text = font_medium.render("Score: " + str(score), True, WHITE)
+    # Draw score in top right corner
+    score_width = score_text.get_width()
+    screen.blit(score_text, (WIDTH - score_width - 20, 15))
     
     # If game is over, display game over message
     if game_over:
-        game_over_text = font.render("GAME OVER", True, RED)
+        game_over_text = font_large.render("GAME OVER", True, RED)
         # Center the text on screen
         # Get the width of the text to calculate center position
         text_width = game_over_text.get_width()
         screen.blit(game_over_text, (WIDTH // 2 - text_width // 2, HEIGHT // 2))
+        
+        # Display final score below game over
+        final_score_text = font_medium.render("Final Score: " + str(score), True, WHITE)
+        final_score_width = final_score_text.get_width()
+        screen.blit(final_score_text, (WIDTH // 2 - final_score_width // 2, HEIGHT // 2 + 50))
     
     # Update the display to show everything we drew
     pygame.display.flip()
