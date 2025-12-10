@@ -87,14 +87,12 @@ I used delta time (dt) to make sure animations run at the same speed regardless 
 
 ## AI Assistance
 
-I used Claude (Anthropic) on December 6, 2024 to help me with:
+I used Claude to help me with:
 - Understanding how to write good docstrings
 - Learning about pygame features like SRCALPHA for transparency
 - Figuring out how composition works in OOP
 - Adding comments to explain my code
-
-Everything else (the visual design, colors, math, data mappings, and all the code logic) I did myself.
-
+- 
 ## What I Learned
 
 - How to read CSV files using Python's csv module
