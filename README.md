@@ -47,24 +47,6 @@ I decided to connect the data to visuals like this:
 - `dog_data.csv` - The dog breed data
 - `README.md` - This file
 
-## How to Run It
-
-1. Make sure you have Python installed (I used Python 3.11)
-
-2. Install pygame:
-```
-pip install pygame
-```
-
-3. Put all the files in the same folder
-
-4. Run the program:
-```
-python Sanjay_data_art.py
-```
-
-5. A window will open showing the animation. Close the window to exit.
-
 ## Technical Details
 
 ### Classes I Created
